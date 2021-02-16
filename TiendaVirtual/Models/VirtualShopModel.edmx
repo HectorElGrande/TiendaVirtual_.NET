@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VirtualShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="VirtualShopModelStoreContainer">
+    <EntitySet Name="Pedidos" EntityType="VirtualShopModel.Store.Pedidos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Facturas" EntityType="VirtualShopModel.Store.Facturas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LineasPedido" EntityType="VirtualShopModel.Store.LineasPedido" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Productos" EntityType="VirtualShopModel.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="VirtualShopModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Stocks" EntityType="VirtualShopModel.Store.Stocks" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PedidoFactura" Association="VirtualShopModel.Store.PedidoFactura">
+      <End Role="Pedido" EntitySet="Pedidos" />
+      <End Role="Factura" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="PedidoLineaPedido" Association="VirtualShopModel.Store.PedidoLineaPedido">
+      <End Role="Pedido" EntitySet="Pedidos" />
+      <End Role="LineaPedido" EntitySet="LineasPedido" />
+    </AssociationSet>
+    <AssociationSet Name="LineaPedidoProducto" Association="VirtualShopModel.Store.LineaPedidoProducto">
+      <End Role="LineaPedido" EntitySet="LineasPedido" />
+      <End Role="Producto" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoStock" Association="VirtualShopModel.Store.ProductoStock">
+      <End Role="Producto" EntitySet="Productos" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoCategoria" Association="VirtualShopModel.Store.ProductoCategoria">
+      <End Role="Producto" EntitySet="Productos" />
+      <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Factura_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facturas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Cliente" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LineasPedido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Pedido_Id" Type="int" Nullable="false" />
+    <Property Name="Producto_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Imagen" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+    <Property Name="Stock_Id" Type="int" Nullable="true" />
+    <Property Name="Categoria_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stocks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="PedidoFactura">
+    <End Role="Pedido" Type="VirtualShopModel.Store.Pedidos" Multiplicity="*" />
+    <End Role="Factura" Type="VirtualShopModel.Store.Facturas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Factura">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Factura_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PedidoLineaPedido">
+    <End Role="Pedido" Type="VirtualShopModel.Store.Pedidos" Multiplicity="1" />
+    <End Role="LineaPedido" Type="VirtualShopModel.Store.LineasPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaPedido">
+        <PropertyRef Name="Pedido_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LineaPedidoProducto">
+    <End Role="LineaPedido" Type="VirtualShopModel.Store.LineasPedido" Multiplicity="*" />
+    <End Role="Producto" Type="VirtualShopModel.Store.Productos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaPedido">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoStock">
+    <End Role="Producto" Type="VirtualShopModel.Store.Productos" Multiplicity="*" />
+    <End Role="Stock" Type="VirtualShopModel.Store.Stocks" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Stock_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoCategoria">
+    <End Role="Producto" Type="VirtualShopModel.Store.Productos" Multiplicity="*" />
+    <End Role="Categoria" Type="VirtualShopModel.Store.Categorias" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Categoria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="VirtualShopModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="VirtualShopModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pedidos" EntityType="VirtualShopModel.Pedido" />
+          <EntitySet Name="Facturas" EntityType="VirtualShopModel.Factura" />
+          <AssociationSet Name="PedidoFactura" Association="VirtualShopModel.PedidoFactura">
+            <End Role="Pedido" EntitySet="Pedidos" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <EntitySet Name="LineasPedido" EntityType="VirtualShopModel.LineaPedido" />
+          <AssociationSet Name="PedidoLineaPedido" Association="VirtualShopModel.PedidoLineaPedido">
+            <End Role="Pedido" EntitySet="Pedidos" />
+            <End Role="LineaPedido" EntitySet="LineasPedido" />
+          </AssociationSet>
+          <EntitySet Name="Productos" EntityType="VirtualShopModel.Producto" />
+          <AssociationSet Name="LineaPedidoProducto" Association="VirtualShopModel.LineaPedidoProducto">
+            <End Role="LineaPedido" EntitySet="LineasPedido" />
+            <End Role="Producto" EntitySet="Productos" />
+          </AssociationSet>
+          <EntitySet Name="Categorias" EntityType="VirtualShopModel.Categoria" />
+          <EntitySet Name="Stocks" EntityType="VirtualShopModel.Stock" />
+          <AssociationSet Name="ProductoStock" Association="VirtualShopModel.ProductoStock">
+            <End Role="Producto" EntitySet="Productos" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoCategoria" Association="VirtualShopModel.ProductoCategoria">
+            <End Role="Producto" EntitySet="Productos" />
+            <End Role="Categoria" EntitySet="Categorias" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Factura" Relationship="VirtualShopModel.PedidoFactura" FromRole="Pedido" ToRole="Factura" />
+          <NavigationProperty Name="LineaPedido" Relationship="VirtualShopModel.PedidoLineaPedido" FromRole="Pedido" ToRole="LineaPedido" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="VirtualShopModel.PedidoFactura" FromRole="Factura" ToRole="Pedido" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="PedidoFactura">
+          <End Type="VirtualShopModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="VirtualShopModel.Factura" Role="Factura" Multiplicity="1" />
+        </Association>
+        <EntityType Name="LineaPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Pedido" Relationship="VirtualShopModel.PedidoLineaPedido" FromRole="LineaPedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="VirtualShopModel.LineaPedidoProducto" FromRole="LineaPedido" ToRole="Producto" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PedidoLineaPedido">
+          <End Type="VirtualShopModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="VirtualShopModel.LineaPedido" Role="LineaPedido" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="LineaPedido" Relationship="VirtualShopModel.LineaPedidoProducto" FromRole="Producto" ToRole="LineaPedido" />
+          <NavigationProperty Name="Stock" Relationship="VirtualShopModel.ProductoStock" FromRole="Producto" ToRole="Stock" />
+          <NavigationProperty Name="Categoria" Relationship="VirtualShopModel.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Imagen" Type="String" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="LineaPedidoProducto">
+          <End Type="VirtualShopModel.LineaPedido" Role="LineaPedido" Multiplicity="*" />
+          <End Type="VirtualShopModel.Producto" Role="Producto" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Producto" Relationship="VirtualShopModel.ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Producto" Relationship="VirtualShopModel.ProductoStock" FromRole="Stock" ToRole="Producto" />
+        </EntityType>
+        <Association Name="ProductoStock">
+          <End Type="VirtualShopModel.Producto" Role="Producto" Multiplicity="*" />
+          <End Type="VirtualShopModel.Stock" Role="Stock" Multiplicity="0..1" />
+        </Association>
+        <Association Name="ProductoCategoria">
+          <End Type="VirtualShopModel.Producto" Role="Producto" Multiplicity="*" />
+          <End Type="VirtualShopModel.Categoria" Role="Categoria" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VirtualShopModelStoreContainer" CdmEntityContainer="VirtualShopModelContainer">
+    <EntitySetMapping Name="Pedidos">
+      <EntityTypeMapping TypeName="IsTypeOf(VirtualShopModel.Pedido)">
+        <MappingFragment StoreEntitySet="Pedidos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facturas">
+      <EntityTypeMapping TypeName="IsTypeOf(VirtualShopModel.Factura)">
+        <MappingFragment StoreEntitySet="Facturas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LineasPedido">
+      <EntityTypeMapping TypeName="IsTypeOf(VirtualShopModel.LineaPedido)">
+        <MappingFragment StoreEntitySet="LineasPedido">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="IsTypeOf(VirtualShopModel.Producto)">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(VirtualShopModel.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="IsTypeOf(VirtualShopModel.Stock)">
+        <MappingFragment StoreEntitySet="Stocks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PedidoFactura" TypeName="VirtualShopModel.PedidoFactura" StoreEntitySet="Pedidos">
+      <EndProperty Name="Factura">
+        <ScalarProperty Name="Id" ColumnName="Factura_Id" />
+      </EndProperty>
+      <EndProperty Name="Pedido">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PedidoLineaPedido" TypeName="VirtualShopModel.PedidoLineaPedido" StoreEntitySet="LineasPedido">
+      <EndProperty Name="Pedido">
+        <ScalarProperty Name="Id" ColumnName="Pedido_Id" />
+      </EndProperty>
+      <EndProperty Name="LineaPedido">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LineaPedidoProducto" TypeName="VirtualShopModel.LineaPedidoProducto" StoreEntitySet="LineasPedido">
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="Id" ColumnName="Producto_Id" />
+      </EndProperty>
+      <EndProperty Name="LineaPedido">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProductoStock" TypeName="VirtualShopModel.ProductoStock" StoreEntitySet="Productos">
+      <EndProperty Name="Stock">
+        <ScalarProperty Name="Id" ColumnName="Stock_Id" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Stock_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProductoCategoria" TypeName="VirtualShopModel.ProductoCategoria" StoreEntitySet="Productos">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="Id" ColumnName="Categoria_Id" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

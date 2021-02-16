@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fadc7a24a955435bb2a2d05070a80a16" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="VirtualShopModel.Pedido" Width="1.5" PointX="1.625" PointY="1.125" />
+        <EntityTypeShape EntityType="VirtualShopModel.Factura" Width="1.5" PointX="4.75" PointY="1.125" />
+        <AssociationConnector Association="VirtualShopModel.PedidoFactura" />
+        <EntityTypeShape EntityType="VirtualShopModel.LineaPedido" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="VirtualShopModel.PedidoLineaPedido" />
+        <EntityTypeShape EntityType="VirtualShopModel.Producto" Width="1.5" PointX="6.875" PointY="4.25" />
+        <AssociationConnector Association="VirtualShopModel.LineaPedidoProducto" />
+        <EntityTypeShape EntityType="VirtualShopModel.Categoria" Width="1.5" PointX="5.5" PointY="7" />
+        <EntityTypeShape EntityType="VirtualShopModel.Stock" Width="1.5" PointX="8.375" PointY="7" />
+        <AssociationConnector Association="VirtualShopModel.ProductoStock" />
+        <AssociationConnector Association="VirtualShopModel.ProductoCategoria" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
