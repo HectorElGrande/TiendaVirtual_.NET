@@ -52,7 +52,7 @@ namespace TiendaVirtual.Controllers
             {
                 db.Categorias.Add(categoria);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Productos");
             }
 
             return View(categoria);
