@@ -46,10 +46,12 @@ namespace TiendaVirtual.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Imagen,Cantidad,Precio")] Producto producto)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Imagen,Categoria,Cantidad,Precio")] Producto producto)
         {
             if (ModelState.IsValid)
             {
+                Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
+                producto.Categoria = cat;
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
