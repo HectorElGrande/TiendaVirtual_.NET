@@ -21,6 +21,21 @@ namespace TiendaVirtual.Controllers
             return View(db.Categorias.ToList());
         }
 
+        // GET: Categorias/Productos/5
+        public ActionResult CategoryProducts(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Categoria categoria = db.Categorias.Find(id);
+            if (categoria.Producto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(categoria.Producto.ToList());
+        }
+
         // GET: Categorias/Details/5
         [Authorize(Users = "admin@gmail.com")]
         public ActionResult Details(int? id)
