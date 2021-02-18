@@ -30,7 +30,7 @@
 
                         foreach (Categoria item in db.Categorias)
                         {
-                            <li>@Html.ActionLink(item.Nombre, "CategoryProducts", "Categorias", new { id = item.Id })</li>
+                            <li>@Html.ActionLink(item.Nombre, "CategoryProducts", "Categorias", new { id = item.Id }, null)</li>
                         }
                     }
                 </ul>
