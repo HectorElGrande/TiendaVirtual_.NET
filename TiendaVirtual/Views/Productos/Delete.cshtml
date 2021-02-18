@@ -24,7 +24,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Imagen)
+            <img src="@Html.DisplayFor(model => model.Imagen)" width="300px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Nombre)
         </dd>
 
         <dt>

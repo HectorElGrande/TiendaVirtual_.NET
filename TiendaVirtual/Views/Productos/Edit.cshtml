@@ -1,7 +1,19 @@
 ﻿@model TiendaVirtual.Models.Producto
+@using TiendaVirtual.Models;
 
 @{
     ViewBag.Title = "Edit";
+    VirtualShopModelContainer db = new VirtualShopModelContainer();
+
+    List<SelectListItem> categorias = new List<SelectListItem>();
+
+    foreach (Categoria categoria in db.Categorias)
+    {
+        SelectListItem item = new SelectListItem();
+        item.Value = categoria.Nombre;
+        item.Text = categoria.Nombre;
+        categorias.Add(item);
+    }
 }
 
 <h2>Edit</h2>
@@ -10,7 +22,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Producto</h4>
         <hr />
@@ -30,6 +42,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Categoria.Nombre, categorias, null, null)
             </div>
         </div>
 

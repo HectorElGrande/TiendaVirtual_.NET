@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using TiendaVirtual.Models;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,18 +25,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Operaciones
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/Productos">Gestionar productos</a></li>
-                            <li><a href="#">Gestionar stock</a></li>
-                        </ul>
-                    </li>
+                    @{
+                        VirtualShopModelContainer db = new VirtualShopModelContainer();
+
+                        foreach (Categoria item in db.Categorias)
+                        {
+                            <li>@Html.ActionLink(item.Nombre, "#", "#")</li>
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

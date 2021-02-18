@@ -80,11 +80,17 @@ namespace TiendaVirtual.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Imagen,Cantidad,Precio")] Producto producto)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Imagen,Categoria,Cantidad,Precio")] Producto producto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producto).State = EntityState.Modified;
+                Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
+                Producto prod = db.Productos.FirstOrDefault(u => u.Id == producto.Id);
+                prod.Categoria = cat;
+                prod.Nombre = producto.Nombre;
+                prod.Imagen = producto.Imagen;
+                prod.Cantidad = producto.Cantidad;
+                prod.Precio = producto.Precio;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
