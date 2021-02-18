@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/16/2021 13:07:43
--- Generated from EDMX file: C:\Users\Hector Muñoz Mérida\source\repos\TiendaVirtual\TiendaVirtual\Models\VirtualShopModel.edmx
+-- Date Created: 02/17/2021 12:38:44
+-- Generated from EDMX file: C:\Users\pablo\Desktop\7 Back-end con Tecnologías Propietarias\Práctica\Entrega\TiendaVirtual_.NET\TiendaVirtual\Models\VirtualShopModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [VirtualShop];
+
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,11 +17,44 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_PedidoFactura]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pedidos] DROP CONSTRAINT [FK_PedidoFactura];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PedidoLineaPedido]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineasPedido] DROP CONSTRAINT [FK_PedidoLineaPedido];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LineaPedidoProducto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineasPedido] DROP CONSTRAINT [FK_LineaPedidoProducto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProductoStock]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Productos] DROP CONSTRAINT [FK_ProductoStock];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProductoCategoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Productos] DROP CONSTRAINT [FK_ProductoCategoria];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Pedidos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Pedidos];
+GO
+IF OBJECT_ID(N'[dbo].[Facturas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Facturas];
+GO
+IF OBJECT_ID(N'[dbo].[LineasPedido]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LineasPedido];
+GO
+IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Productos];
+GO
+IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Categorias];
+GO
+IF OBJECT_ID(N'[dbo].[Stocks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Stocks];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
