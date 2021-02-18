@@ -10,6 +10,7 @@ using TiendaVirtual.Models;
 
 namespace TiendaVirtual.Controllers
 {
+    [Authorize(Users = "admin@gmail.com")]
     public class ProductosController : Controller
     {
         private VirtualShopModelContainer db = new VirtualShopModelContainer();

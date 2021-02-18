@@ -15,12 +15,14 @@ namespace TiendaVirtual.Controllers
         private VirtualShopModelContainer db = new VirtualShopModelContainer();
 
         // GET: Categorias
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Index()
         {
             return View(db.Categorias.ToList());
         }
 
         // GET: Categorias/Details/5
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace TiendaVirtual.Controllers
         }
 
         // GET: Categorias/Create
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace TiendaVirtual.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Create([Bind(Include = "Id,Nombre")] Categoria categoria)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace TiendaVirtual.Controllers
         }
 
         // GET: Categorias/Edit/5
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace TiendaVirtual.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Edit([Bind(Include = "Id,Nombre")] Categoria categoria)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace TiendaVirtual.Controllers
         }
 
         // GET: Categorias/Delete/5
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace TiendaVirtual.Controllers
         // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "admin@gmail.com")]
         public ActionResult DeleteConfirmed(int id)
         {
             Categoria categoria = db.Categorias.Find(id);

@@ -6,17 +6,20 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Operaciones
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/Productos">Gestionar productos</a></li>
-                    <li><a href="/Categorias">Gestionar categorias</a></li>
-                    <li><a href="#">Gestionar stock</a></li>
-                </ul>
-            </li>
+            @if (User.Identity.Name.Equals("admin@gmail.com"))
+            {
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Operaciones
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Productos">Gestionar productos</a></li>
+                        <li><a href="/Categorias">Gestionar categorias</a></li>
+                        <li><a href="#">Gestionar stock</a></li>
+                    </ul>
+                </li>
+            }
             <li>
                 @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
