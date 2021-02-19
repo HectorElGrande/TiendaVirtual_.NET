@@ -14,12 +14,15 @@ namespace TiendaVirtual.Controllers
     {
         private VirtualShopModelContainer db = new VirtualShopModelContainer();
 
-        public ActionResult AddToCart(int id, CarritoCompra carrito)
+        public ActionResult AddToCart(int id, int cantidad, CarritoCompra carrito)
         {
             List<Producto> productos = db.Productos.ToList();
             Producto p = productos.Find(producto => producto.Id == id);
-            //carrito.Add(p);
-            return RedirectToAction("Index");
+            LineaPedido lineaPedido = new LineaPedido();
+            lineaPedido.Cantidad = cantidad;
+            lineaPedido.Producto = p;
+            carrito.Add(lineaPedido);
+            return View("Cart", carrito);
         }
 
         // GET: Categorias

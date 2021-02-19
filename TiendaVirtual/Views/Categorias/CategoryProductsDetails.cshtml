@@ -47,19 +47,29 @@
         </dt>
 
         <dd>
-            @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", max = Model.Cantidad, min = 1, value = 1 } })
-            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+            <input type="number" id="cantidadInput" value="1" min="1" max="@Model.Cantidad" name="cantidad" />
+        </dd>
+
+        <dd>
+            <button type="button" class="btn btn-success" id="result" onclick="prueba()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                </svg>
+                Añadir al carrito
+            </button>
         </dd>
 
     </dl>
 </div>
-<button type="button" class="btn btn-success">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-    </svg>
-    Añadir al carrito
-</button>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "CategoryProducts", "Categorias", new { id = Model.Categoria.Id }, null)
 </p>
+
+<script>
+    function prueba() {
+        console.log("dgfdgf");
+        var url = "https://localhost:44357/Categorias/AddToCart/" + @Model.Id + "?cantidad=" + document.getElementById("cantidadInput").value;
+        location.href = url;
+    }
+</script>
