@@ -14,6 +14,14 @@ namespace TiendaVirtual.Controllers
     {
         private VirtualShopModelContainer db = new VirtualShopModelContainer();
 
+        public ActionResult AddToCart(int id, CarritoCompra carrito)
+        {
+            List<Producto> productos = db.Productos.ToList();
+            Producto p = productos.Find(producto => producto.Id == id);
+            carrito.Add(p);
+            return RedirectToAction("Index");
+        }
+
         // GET: Categorias
         [Authorize(Users = "admin@gmail.com")]
         public ActionResult Index()

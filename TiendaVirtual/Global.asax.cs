@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TiendaVirtual.Models;
+using TiendaVirtual.Models.Binders;
 
 namespace TiendaVirtual
 {
@@ -18,6 +20,7 @@ namespace TiendaVirtual
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(CarritoCompra), new CarritoModelBinder());
         }
     }
 }
