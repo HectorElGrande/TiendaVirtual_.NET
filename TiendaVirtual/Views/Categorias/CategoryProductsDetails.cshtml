@@ -1,0 +1,58 @@
+﻿@model TiendaVirtual.Models.Producto
+
+@{
+    ViewBag.Title = "CategoryProductsDetails";
+}
+
+<h2>CategoryProductsDetails</h2>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Imagen)" width="300px" />
+        </dd>
+
+        <dt>
+            Stock disponible
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dd>
+            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", max = Model.Cantidad, min = 1} })
+                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

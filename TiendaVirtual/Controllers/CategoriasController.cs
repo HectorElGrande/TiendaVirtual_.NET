@@ -18,7 +18,7 @@ namespace TiendaVirtual.Controllers
         {
             List<Producto> productos = db.Productos.ToList();
             Producto p = productos.Find(producto => producto.Id == id);
-            carrito.Add(p);
+            //carrito.Add(p);
             return RedirectToAction("Index");
         }
 
@@ -29,7 +29,7 @@ namespace TiendaVirtual.Controllers
             return View(db.Categorias.ToList());
         }
 
-        // GET: Categorias/Productos/5
+        // GET: Categorias/CategoryProducts/5
         public ActionResult CategoryProducts(int? id)
         {
             if (id == null)
@@ -42,6 +42,21 @@ namespace TiendaVirtual.Controllers
                 return HttpNotFound();
             }
             return View(categoria.Producto.ToList());
+        }
+
+        // GET: Categorias/CategoryProductsDetails/5
+        public ActionResult CategoryProductsDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Producto producto = db.Productos.Find(id);
+            if (producto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(producto);
         }
 
         // GET: Categorias/Details/5

@@ -6,38 +6,37 @@
 
 <h2>CategoryProducts</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="100px" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-    </tr>
-}
-
-</table>
+<div id="html-item-pagination">
+    <div class="hip-item">
+        <div>
+            <div class="thumbnail">
+                <div class="caption text-center" onclick="location.href='https://flow.microsoft.com/en-us/connectors/shared_slack/slack/'">
+                    <div class="position-relative">
+                        <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
+                    </div>
+                    <h4 id="thumbnail-label"><a href="https://flow.microsoft.com/en-us/connectors/shared_slack/slack/" target="_blank">Microsoft Slack</a></h4>
+                    <p><i class="glyphicon glyphicon-user light-red lighter bigger-120"></i>&nbsp;Auditor</p>
+                </div>
+                <div class="caption card-footer text-center">
+                    <ul class="list-inline">
+                        <li><i class="people lighter"></i>&nbsp;7 Active Users</li>
+                        <li></li>
+                        <li><i class="glyphicon glyphicon-envelope lighter"></i><a href="#">&nbsp;Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hip-item">
+        Content 2
+    </div>
+    <div class="hip-item">
+        Content 3
+    </div>
+    <div class="hip-item">
+        Content 4
+    </div>
+    <div class="hip-item">
+        Content 5
+    </div>
+</div>

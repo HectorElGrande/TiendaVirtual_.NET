@@ -45,9 +45,16 @@
             <p>&copy; @DateTime.Now.Year </p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/llxx-lord-xxll/html-item-pagination/lib/hip.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $("#html-item-pagination").hip({ itemHeight: '200px', filter: true, filterPos: 'center' });
+
+        });
+    </script>
 </body>
 </html>
