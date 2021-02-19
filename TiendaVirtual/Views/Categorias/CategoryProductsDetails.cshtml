@@ -69,7 +69,8 @@
 <script>
     function prueba() {
         console.log("dgfdgf");
-        var url = "https://localhost:44357/Categorias/AddToCart/" + @Model.Id + "?cantidad=" + document.getElementById("cantidadInput").value;
+        var linkpart1 = location.href.split("/Categorias/");
+        var url = linkpart1[0] + "/Categorias/AddToCart/" + @Model.Id + "?cantidad=" + document.getElementById("cantidadInput").value;
         location.href = url;
     }
 </script>
