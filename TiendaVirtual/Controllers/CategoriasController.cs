@@ -30,7 +30,7 @@ namespace TiendaVirtual.Controllers
             {
                 l.Cantidad = cantidad;
             }
-            return View("Cart", carrito);
+            return RedirectToAction("Index", "CarritoCompra");
         }
 
         // GET: Categorias

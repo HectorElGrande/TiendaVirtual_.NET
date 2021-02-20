@@ -320,7 +320,6 @@
     <Content Include="Views\Categorias\CategoryProducts.cshtml" />
     <Content Include="Views\CarritoCompra\Index.cshtml" />
     <Content Include="Views\Categorias\CategoryProductsDetails.cshtml" />
-    <Content Include="Views\Categorias\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
