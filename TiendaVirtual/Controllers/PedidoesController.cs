@@ -40,7 +40,6 @@ namespace TiendaVirtual.Controllers
         public ActionResult Create(CarritoCompra carrito)
         {
             Pedido pedido = new Pedido();
-            pedido.LineaPedido = carrito;
             Factura factura = new Factura();
             string userId = User.Identity.GetUserId();
             factura.Id_Cliente = userId;
@@ -48,11 +47,14 @@ namespace TiendaVirtual.Controllers
             foreach(LineaPedido l in carrito)
             {
                 precioTotal += l.Cantidad * l.Producto.Precio;
+                l.Producto = db.Productos.FirstOrDefault(producto => producto.Nombre == l.Producto.Nombre);
             }
+            pedido.LineaPedido = carrito;
             factura.Precio = precioTotal;
             pedido.Factura = factura;
+            db.Pedidos.Add(pedido);
             db.SaveChanges();
-            return View("Index", "Facturas");
+            return RedirectToAction("Index", "Facturas");
         }
 
 

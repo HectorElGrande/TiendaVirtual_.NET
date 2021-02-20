@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/17/2021 12:38:44
+-- Date Created: 02/20/2021 18:24:19
 -- Generated from EDMX file: C:\Users\pablo\Desktop\7 Back-end con Tecnologías Propietarias\Práctica\Entrega\TiendaVirtual_.NET\TiendaVirtual\Models\VirtualShopModel.edmx
 -- --------------------------------------------------
 
@@ -70,7 +70,7 @@ GO
 -- Creating table 'Facturas'
 CREATE TABLE [dbo].[Facturas] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Id_Cliente] int  NOT NULL,
+    [Id_Cliente] nvarchar(max)  NOT NULL,
     [Precio] float  NOT NULL
 );
 GO

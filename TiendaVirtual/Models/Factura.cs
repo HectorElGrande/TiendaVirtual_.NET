@@ -15,7 +15,7 @@ namespace TiendaVirtual.Models
     public partial class Factura
     {
         public int Id { get; set; }
-        public int Id_Cliente { get; set; }
+        public string Id_Cliente { get; set; }
         public double Precio { get; set; }
     
         public virtual Pedido Pedido { get; set; }

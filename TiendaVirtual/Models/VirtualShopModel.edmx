@@ -45,7 +45,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Id_Cliente" Type="int" Nullable="false" />
+    <Property Name="Id_Cliente" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Precio" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="LineasPedido">
@@ -187,7 +187,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Id_Cliente" Type="String" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="VirtualShopModel.PedidoFactura" FromRole="Factura" ToRole="Pedido" />
           <Property Name="Precio" Type="Double" Nullable="false" />
         </EntityType>
