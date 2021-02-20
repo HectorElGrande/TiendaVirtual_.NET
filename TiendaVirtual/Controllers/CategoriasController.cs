@@ -18,10 +18,18 @@ namespace TiendaVirtual.Controllers
         {
             List<Producto> productos = db.Productos.ToList();
             Producto p = productos.Find(producto => producto.Id == id);
-            LineaPedido lineaPedido = new LineaPedido();
-            lineaPedido.Cantidad = cantidad;
-            lineaPedido.Producto = p;
-            carrito.Add(lineaPedido);
+            LineaPedido l = carrito.Find(linea => linea.Producto.Nombre == p.Nombre);
+            if(l == null)
+            {
+                LineaPedido lineaPedido = new LineaPedido();
+                lineaPedido.Cantidad = cantidad;
+                lineaPedido.Producto = p;
+                carrito.Add(lineaPedido);
+            }
+            else
+            {
+                l.Cantidad = cantidad;
+            }
             return View("Cart", carrito);
         }
 

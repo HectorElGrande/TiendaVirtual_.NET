@@ -58,12 +58,39 @@
     @Html.ActionLink("Volver", "CategoryProducts", "Categorias", new { id = Model.Categoria.Id }, null)
 </p>
 
+<!-- Trigger the modal with a button -->
+<button id="modal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="visibility: hidden">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">No hay suficiente stock disponible en estos momentos.</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ha de seleccionar una cantidad dentro del stock disponible.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script>
     function prueba() {
-        console.log("dgfdgf");
-        var linkpart1 = location.href.split("/Categorias/");
-        var url = linkpart1[0] + "/Categorias/AddToCart/" + @Model.Id + "?cantidad=" + document.getElementById("cantidadInput").value;
-        location.href = url;
+        var maxValue = parseInt(@Model.Cantidad);
+        var value = parseInt(document.getElementById("cantidadInput").value);
+        if (value > 0 && value <= maxValue) {
+            var linkpart1 = location.href.split("/Categorias/");
+            var url = linkpart1[0] + "/Categorias/AddToCart/" + @Model.Id + "?cantidad=" + document.getElementById("cantidadInput").value;
+            location.href = url;
+        } else {
+            //alert("Inserte una cantidad válida.");
+            document.getElementById("modal").click();
+        }
     }
 
 </script>
