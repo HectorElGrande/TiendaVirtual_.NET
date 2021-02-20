@@ -14,7 +14,7 @@
                 <div class="thumbnail" style="height: 250px;">
                     <div class="caption text-center">
                         <div class="position-relative">
-                            <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="100px" />
+                            <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="200px" style="max-height: 130px;" />
                         </div>
                         <div class="hip-item">
                             <h4 id="thumbnail-label">@Html.ActionLink(item.Nombre, "CategoryProductsDetails", "Categorias", new { id = item.Id }, null)</h4>
