@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,12 @@ namespace TiendaVirtual.Controllers
         // GET: Facturas
         public ActionResult Index()
         {
-            return View(db.Facturas.ToList());
+            string idUs = User.Identity.GetUserId();
+            var facturasUsuario = (from f in db.Facturas 
+                                  where f.Id_Cliente == idUs 
+                                  select f).ToList();
+            //db.Facturas.Where(a => a.Id_Cliente == User.Identity.GetUserId());
+            return View(facturasUsuario);
         }
 
         // GET: Facturas/Details/5
