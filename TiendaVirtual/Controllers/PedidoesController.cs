@@ -54,7 +54,7 @@ namespace TiendaVirtual.Controllers
             pedido.Factura = factura;
             db.Pedidos.Add(pedido);
             db.SaveChanges();
-            return RedirectToAction("Index", "Facturas");
+            return RedirectToAction("Details", "Facturas", factura);
         }
 
 
