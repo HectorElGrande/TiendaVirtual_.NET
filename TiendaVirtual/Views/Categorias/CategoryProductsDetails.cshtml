@@ -19,7 +19,7 @@
             }
             else
             {
-                <img src="https://img.pngio.com/hd-sold-out-stamp-4-16-jul-2018-circle-transparent-png-image-sold-out-logo-2577_2000.png" width="700px" style="margin-right: 5%;"/>
+                <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" width="700px" style="margin-right: 5%;"/>
             }
             <div style="display:flex; flex-direction:column; justify-content:space-between">
                 <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
@@ -39,11 +39,14 @@
 
                 <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
                     <dd style="margin-right: 5px;">
-                        <input type="number" id="cantidadInput" value="1" min="1" max="@Model.Cantidad" name="cantidad" style="border: none;
+                        @if (Model.Cantidad > 0)
+                        {
+                            <input type="number" id="cantidadInput" value="1" min="1" max="@Model.Cantidad" name="cantidad" style="border: none;
                                                                   background-color: rgba(240, 235, 233, .5); -webkit-background-clip: padding-box;
                                                                   background-clip: padding-box;
                                                                   padding: 8px; border-radius: 10px; max-width: 100px; margin-right: 10px" />
-                    </dd>
+                        }
+                        </dd>
 
                     <dd>
                         @if (Request.IsAuthenticated && Model.Cantidad > 0)

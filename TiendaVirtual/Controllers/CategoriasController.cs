@@ -103,9 +103,12 @@ namespace TiendaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categorias.Add(categoria);
-                db.SaveChanges();
-                return RedirectToAction("Create", "Productos");
+                if (db.Categorias.FirstOrDefault(c => c.Nombre == categoria.Nombre) == null)
+                {
+                    db.Categorias.Add(categoria);
+                    db.SaveChanges();
+                    return RedirectToAction("Create", "Productos");
+                }
             }
 
             return View(categoria);
@@ -137,9 +140,13 @@ namespace TiendaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categoria).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.Categorias.FirstOrDefault(u => u.Id == categoria.Id).Nombre == categoria.Nombre ||
+                    db.Categorias.FirstOrDefault(u => u.Nombre == categoria.Nombre) == null)
+                {
+                    db.Entry(categoria).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             return View(categoria);
         }

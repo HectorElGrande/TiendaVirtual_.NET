@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/20/2021 18:24:19
+-- Date Created: 02/21/2021 20:19:58
 -- Generated from EDMX file: C:\Users\pablo\Desktop\7 Back-end con Tecnologías Propietarias\Práctica\Entrega\TiendaVirtual_.NET\TiendaVirtual\Models\VirtualShopModel.edmx
 -- --------------------------------------------------
 
