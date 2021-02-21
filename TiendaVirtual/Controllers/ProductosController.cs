@@ -51,11 +51,13 @@ namespace TiendaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(db.Productos.FirstOrDefault(p => p.Nombre == producto.Nombre) == null) { 
                 Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
                 producto.Categoria = cat;
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
             }
 
             return View(producto);
@@ -85,20 +87,24 @@ namespace TiendaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-                Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
-                Producto prod = db.Productos.FirstOrDefault(u => u.Id == producto.Id);
-                prod.Categoria = cat;
-                prod.Nombre = producto.Nombre;
-                prod.Imagen = producto.Imagen;
-                prod.Cantidad = producto.Cantidad;
-                prod.Precio = producto.Precio;
-                Producto productoStock = db.Stocks.First().Producto.FirstOrDefault(p => p.Nombre == prod.Nombre);
-                if(prod.Cantidad>0 && productoStock != null)
+                if(db.Productos.FirstOrDefault(u => u.Id == producto.Id).Nombre == producto.Nombre ||
+                    db.Productos.FirstOrDefault(u => u.Nombre == producto.Nombre) == null)
                 {
-                    db.Stocks.First().Producto.Remove(productoStock);
+                    Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
+                    Producto prod = db.Productos.FirstOrDefault(u => u.Id == producto.Id);
+                    prod.Categoria = cat;
+                    prod.Nombre = producto.Nombre;
+                    prod.Imagen = producto.Imagen;
+                    prod.Cantidad = producto.Cantidad;
+                    prod.Precio = producto.Precio;
+                    Producto productoStock = db.Stocks.First().Producto.FirstOrDefault(p => p.Nombre == prod.Nombre);
+                    if(prod.Cantidad>0 && productoStock != null)
+                    {
+                        db.Stocks.First().Producto.Remove(productoStock);
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                db.SaveChanges();
-                return RedirectToAction("Index");
             }
             return View(producto);
         }
