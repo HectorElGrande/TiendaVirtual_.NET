@@ -10,121 +10,107 @@ using TiendaVirtual.Models;
 
 namespace TiendaVirtual.Controllers
 {
-    [Authorize(Users = "admin@gmail.com")]
-    public class ProductosController : Controller
+    public class StocksController : Controller
     {
         private VirtualShopModelContainer db = new VirtualShopModelContainer();
 
-        // GET: Productos
+        // GET: Stocks
         public ActionResult Index()
         {
-            return View(db.Productos.ToList());
+            return View(db.Stocks.First().Producto.ToList());
         }
 
-        // GET: Productos/Details/5
+        // GET: Stocks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
-            if (producto == null)
+            Stock stock = db.Stocks.Find(id);
+            if (stock == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(stock);
         }
 
-        // GET: Productos/Create
+        // GET: Stocks/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Productos/Create
+        // POST: Stocks/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Imagen,Categoria,Cantidad,Precio")] Producto producto)
+        public ActionResult Create([Bind(Include = "Id")] Stock stock)
         {
             if (ModelState.IsValid)
             {
-                Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
-                producto.Categoria = cat;
-                db.Productos.Add(producto);
+                db.Stocks.Add(stock);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(producto);
+            return View(stock);
         }
 
-        // GET: Productos/Edit/5
+        // GET: Stocks/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
-            if (producto == null)
+            Stock stock = db.Stocks.Find(id);
+            if (stock == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(stock);
         }
 
-        // POST: Productos/Edit/5
+        // POST: Stocks/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Imagen,Categoria,Cantidad,Precio")] Producto producto)
+        public ActionResult Edit([Bind(Include = "Id")] Stock stock)
         {
             if (ModelState.IsValid)
             {
-                Categoria cat = db.Categorias.FirstOrDefault(u => u.Nombre == producto.Categoria.Nombre);
-                Producto prod = db.Productos.FirstOrDefault(u => u.Id == producto.Id);
-                prod.Categoria = cat;
-                prod.Nombre = producto.Nombre;
-                prod.Imagen = producto.Imagen;
-                prod.Cantidad = producto.Cantidad;
-                prod.Precio = producto.Precio;
-                Producto productoStock = db.Stocks.First().Producto.FirstOrDefault(p => p.Nombre == prod.Nombre);
-                if(prod.Cantidad>0 && productoStock != null)
-                {
-                    db.Stocks.First().Producto.Remove(productoStock);
-                }
+                db.Entry(stock).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(producto);
+            return View(stock);
         }
 
-        // GET: Productos/Delete/5
+        // GET: Stocks/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
-            if (producto == null)
+            Stock stock = db.Stocks.Find(id);
+            if (stock == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(stock);
         }
 
-        // POST: Productos/Delete/5
+        // POST: Stocks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Productos.Find(id);
-            db.Productos.Remove(producto);
+            Stock stock = db.Stocks.Find(id);
+            db.Stocks.Remove(stock);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

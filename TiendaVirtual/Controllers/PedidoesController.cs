@@ -50,6 +50,11 @@ namespace TiendaVirtual.Controllers
                 l.Producto = db.Productos.FirstOrDefault(producto => producto.Nombre == l.Producto.Nombre);
                 Producto productoAlmacen = db.Productos.FirstOrDefault(producto => producto.Nombre == l.Producto.Nombre);
                 productoAlmacen.Cantidad -= l.Cantidad;
+                if (productoAlmacen.Cantidad <= 0)
+                {
+                    Stock stock = db.Stocks.First();
+                    stock.Producto.Add(productoAlmacen);
+                }
             }
             pedido.LineaPedido = carrito;
             factura.Precio = precioTotal;

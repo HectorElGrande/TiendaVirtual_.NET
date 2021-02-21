@@ -191,6 +191,7 @@
     <Compile Include="Controllers\PedidoesController.cs" />
     <Compile Include="Controllers\ProductosApiController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\StocksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -332,6 +333,11 @@
     <Content Include="Views\Facturas\Details.cshtml" />
     <Content Include="Views\Facturas\Edit.cshtml" />
     <Content Include="Views\Facturas\Index.cshtml" />
+    <Content Include="Views\Stocks\Create.cshtml" />
+    <Content Include="Views\Stocks\Delete.cshtml" />
+    <Content Include="Views\Stocks\Details.cshtml" />
+    <Content Include="Views\Stocks\Edit.cshtml" />
+    <Content Include="Views\Stocks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
