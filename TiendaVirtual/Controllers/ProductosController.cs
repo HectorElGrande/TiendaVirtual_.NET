@@ -98,7 +98,7 @@ namespace TiendaVirtual.Controllers
                     prod.Cantidad = producto.Cantidad;
                     prod.Precio = producto.Precio;
                     Producto productoStock = db.Stocks.First().Producto.FirstOrDefault(p => p.Nombre == prod.Nombre);
-                    if(prod.Cantidad>0 && productoStock != null)
+                    if(prod.Cantidad>1 && productoStock != null)
                     {
                         db.Stocks.First().Producto.Remove(productoStock);
                     }
