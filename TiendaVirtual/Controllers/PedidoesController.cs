@@ -48,6 +48,8 @@ namespace TiendaVirtual.Controllers
             {
                 precioTotal += l.Cantidad * l.Producto.Precio;
                 l.Producto = db.Productos.FirstOrDefault(producto => producto.Nombre == l.Producto.Nombre);
+                Producto productoAlmacen = db.Productos.FirstOrDefault(producto => producto.Nombre == l.Producto.Nombre);
+                productoAlmacen.Cantidad -= l.Cantidad;
             }
             pedido.LineaPedido = carrito;
             factura.Precio = precioTotal;
