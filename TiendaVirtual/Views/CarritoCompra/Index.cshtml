@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Cart";
-    var lastCategoryId = 1;
+    double costeTotal = 0;
 }
 
 <h2>Cart</h2>
@@ -24,7 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Producto.Precio) total
         </th>
-        <th></th>
+        <th>
+            Operaciones
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -45,23 +47,44 @@
             <td>
                 @{
                     double total = item.Cantidad * item.Producto.Precio;
+                    costeTotal += total;
                 }
                 @total €
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <td style="display:flex; flex-direction:row;">
+                <button type="button" class="btn btn-info" style="display:flex; justify-content:center; align-items:center; padding:5px; margin-right:10px;">
+                    <a href="Categorias/CategoryProductsDetails/@item.Producto.Id" style="text-decoration:none; border: none; display:flex; justify-content:center; align-items:center; color: white;">
+                        <span class="material-icons" style="color: white;">
+                            create
+                        </span>
+                    </a>
+                </button>
+                <button type="button" class="btn btn-danger" style="display:flex; justify-content:center; align-items:center; padding:5px;">
+                    <a href="#" style="text-decoration:none; border: none; display:flex; justify-content:center; align-items:center; color: white;">
+                        <span class='material-icons'>
+                            delete_forever
+                        </span>
+                    </a>
+                </button>
             </td>
         </tr>
     }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <p><b>Total:</b></p> @Html.DisplayFor(modelItem => costeTotal) €
+        </td>
+        <td>
+            @if (Model.Count() > 0)
+            {
+                <button type="button" class="btn btn-success">@Html.ActionLink("Confirmar pedido", "Create", "Pedidoes", null, new { @style = "color: white; text-decoration:none;" })</button>
+            }
+        </td>
+    </tr>
 
 </table>
 
 <a href="/Categorias/CategoryProducts/1">Seguir comprando</a>
-@Html.ActionLink("Pagar", "Create", "Pedidoes")
-
-
-    
-
 
