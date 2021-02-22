@@ -61,6 +61,16 @@ namespace TiendaVirtual.Controllers
             pedido.Factura = factura;
             db.Pedidos.Add(pedido);
             db.SaveChanges();
+            List<int> ids = new List<int> { };
+            foreach (LineaPedido linea in carrito)
+            {
+                ids.Add(linea.Id);
+            }
+            foreach (int i in ids)
+            {
+                LineaPedido linea2 = db.LineasPedido.Find(i);
+                carrito.Remove(linea2);
+            }
             return RedirectToAction("Details", "Facturas", factura);
         }
 
