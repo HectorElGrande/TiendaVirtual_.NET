@@ -43,17 +43,55 @@
           background-size: cover;
         }
 
+        .a-btn {
+            padding: 10px 20px;
+            background-color: #333;
+            border-radius: 0;
+            transition: .2s;
+            color: white;
+        }
+
+            .a-btn:hover {
+                color: #333;
+                border: 1px solid #333;
+                background-color: #fff;
+            }
+
+            .hip-search {
+                padding-top: 0;
+            }
+
         /* First image (Logo. Full height) */
-        .bgimg-1 { background-image: url('http://vendeenamazon.net/wp-content/uploads/2018/02/comprarparavender.png'); min-height: 100%; }
+        .bgimg-1 {
+            background-image: url('http://vendeenamazon.net/wp-content/uploads/2018/02/comprarparavender.png');
+            min-height: 100vh;
+        }
 
         /* Second image (Portfolio) */
-    .bgimg-2 { background-image: url("http://vendeenamazon.net/wp-content/uploads/2018/02/comprarparavender.png"); min-height: 400px; }
+    .bgimg-2 { background-image: url("https://images.pexels.com/photos/5632386/pexels-photo-5632386.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); min-height: 400px; }
 
         /* Third image (Contact) */
-    .bgimg-3 { background-image: url("http://vendeenamazon.net/wp-content/uploads/2018/02/comprarparavender.png"); min-height: 400px; }
+    .bgimg-3 { background-image: url("https://images.pexels.com/photos/6444/pencil-typography-black-design.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); min-height: 400px; }
 
         .w3-wide {letter-spacing: 10px;}
         .w3-hover-opacity {cursor: pointer;}
+
+        .w3-xxlarge w3-text-white w3-wide {
+            color: darkslategrey;
+            text-align: center;
+        }
+
+        #wrapper {
+            position: relative;
+            min-height: 90%;
+        }
+
+        #footer {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
 
         .container {
             margin: 0;
@@ -63,12 +101,13 @@
         }
 
         .render_body{
-            padding: 70px 20vw 100px 20vw;
+            padding: 70px 20vw 30px 20vw;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top w3-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -97,45 +136,21 @@
         <div style="margin: 0 auto;">
             @RenderBody()
         </div>
-        <footer class="w3-center w3-black w3-padding-64">
-            <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-            <div class="w3-xlarge w3-section">
-                <i class="fa fa-facebook-official w3-hover-opacity"></i>
-                <i class="fa fa-instagram w3-hover-opacity"></i>
-                <i class="fa fa-snapchat w3-hover-opacity"></i>
-                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-                <i class="fa fa-twitter w3-hover-opacity"></i>
-                <i class="fa fa-linkedin w3-hover-opacity"></i>
-            </div>
-            <p>&copy;Copyright 2021</p>
-        </footer>
-        <!--<div class="footer-top-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-
+        <div id="wrapper">
+            <div id="footer">
+                <footer class="w3-center w3-black w3-padding-64">
+                    <div class="w3-xlarge w3-section">
+                        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                        <i class="fa fa-instagram w3-hover-opacity"></i>
+                        <i class="fa fa-snapchat w3-hover-opacity"></i>
+                        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+                        <i class="fa fa-twitter w3-hover-opacity"></i>
+                        <i class="fa fa-linkedin w3-hover-opacity"></i>
+                    </div>
+                    <p>&copy;Copyright 2021</p>
+                </footer>
             </div>
         </div>
-
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="copyright">
-                            <p>&copy; 2021. Todos los derechos reservados.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="footer-card-icon">
-                            <i class="fa fa-cc-discover"></i>
-                            <i class="fa fa-cc-mastercard"></i>
-                            <i class="fa fa-cc-paypal"></i>
-                            <i class="fa fa-cc-visa"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End footer bottom area -->
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

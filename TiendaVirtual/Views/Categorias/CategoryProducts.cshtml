@@ -14,29 +14,29 @@
             {
                 <div class="hip-item">
                     <div>
-                        <div class="thumbnail" style="height: 250px;">
-                            <div class="caption text-center">
+                        <div class="thumbnail" style="padding: 0; height: 250px;">
+                            <div class="caption text-center" style="display: flex; flex-direction:column; justify-content:space-between; padding: 8px; height:100%;">
                                 <div class="position-relative">
                                     @if (item.Cantidad > 0)
                                     {
-                                        <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="200px" style="max-height: 130px;" />
+                                        <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="60%" style="max-height: 120px;" />
                                     }
                                     else
                                     {
-                                        <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" style="max-height: 130px;" />
+                                        <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" style="max-height: 120px;" width="60%" />
                                     }
 
                                 </div>
                                 <div class="hip-item">
-                                    <h4 id="thumbnail-label">@Html.ActionLink(item.Nombre, "CategoryProductsDetails", "Categorias", new { id = item.Id }, null)</h4>
+                                    <h4 id="thumbnail-label" style="font-size: 1.5vw;">@Html.ActionLink(item.Nombre, "CategoryProductsDetails", "Categorias", new { id = item.Id }, null)</h4>
                                 </div>
-                            </div>
-                            <div class="caption card-footer text-center">
-                                <ul class="list-inline">
-                                    <li><i class="people lighter"></i>&nbsp;Stock: @Html.DisplayFor(modelItem => item.Cantidad)</li>
-                                    <li></li>
-                                    <li><i class="glyphicon glyphicon-credit-card lighter"></i> @Html.DisplayFor(modelItem => item.Precio)€</li>
-                                </ul>
+                                <div class="caption card-footer text-center">
+                                    <ul class="list-inline">
+                                        <li style="font-size: 0.7vw;"><i class="people lighter"></i>&nbsp;Stock: @Html.DisplayFor(modelItem => item.Cantidad)</li>
+                                        <li></li>
+                                        <li style="font-size: 0.7vw;"><i class="glyphicon glyphicon-credit-card lighter"></i> @Html.DisplayFor(modelItem => item.Precio)€</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

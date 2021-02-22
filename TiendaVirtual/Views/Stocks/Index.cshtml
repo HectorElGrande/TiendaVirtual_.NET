@@ -4,48 +4,50 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="render_body">
+    <h2>Productos a reponer</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="100px" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Productos", new { id=item.Id }, null) |
-            @Html.ActionLink("Details", "Details", "Productos", new { id = item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", "Productos", new { id = item.Id }, null)
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Productos", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Productos", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Productos", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+
+</div>
+

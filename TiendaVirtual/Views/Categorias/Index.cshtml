@@ -7,10 +7,12 @@
 <div class="render_body">
     <h2>Index</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
+    <a class="a-btn" href="/Categorias/Create" style="text-decoration:none; border-radius: 500px; display:flex; justify-content:center; align-items:center; width: 50px;">
+        <span class="material-icons">
+            add_circle_outline
+        </span>
+    </a>
+    <table class="table" style="margin: 30px;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
