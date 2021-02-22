@@ -3,40 +3,49 @@
 @{
     ViewBag.Title = "CategoryProducts";
 }
-<br />
-<h2>@Model.First().Categoria.Nombre</h2>
 
-<div id="html-item-pagination" style="height: 700px;">
-    @foreach (var item in Model)
+<div class="render_body">
+    @if (Model.Count() > 0)
     {
-        <div class="hip-item">
-            <div>
-                <div class="thumbnail" style="height: 250px;">
-                    <div class="caption text-center">
-                        <div class="position-relative">
-                            @if (item.Cantidad > 0)
-                            {
-                                <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="200px" style="max-height: 130px;" />
-                            }
-                            else
-                            {
-                                <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" style="max-height: 130px;" />
-                            }
+        <h2>@Model.First().Categoria.Nombre</h2>
 
+        <div id="html-item-pagination" style="height: 700px;">
+            @foreach (var item in Model)
+            {
+                <div class="hip-item">
+                    <div>
+                        <div class="thumbnail" style="height: 250px;">
+                            <div class="caption text-center">
+                                <div class="position-relative">
+                                    @if (item.Cantidad > 0)
+                                    {
+                                        <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="200px" style="max-height: 130px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" style="max-height: 130px;" />
+                                    }
+
+                                </div>
+                                <div class="hip-item">
+                                    <h4 id="thumbnail-label">@Html.ActionLink(item.Nombre, "CategoryProductsDetails", "Categorias", new { id = item.Id }, null)</h4>
+                                </div>
+                            </div>
+                            <div class="caption card-footer text-center">
+                                <ul class="list-inline">
+                                    <li><i class="people lighter"></i>&nbsp;Stock: @Html.DisplayFor(modelItem => item.Cantidad)</li>
+                                    <li></li>
+                                    <li><i class="glyphicon glyphicon-credit-card lighter"></i> @Html.DisplayFor(modelItem => item.Precio)€</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="hip-item">
-                            <h4 id="thumbnail-label">@Html.ActionLink(item.Nombre, "CategoryProductsDetails", "Categorias", new { id = item.Id }, null)</h4>
-                        </div>
-                    </div>
-                    <div class="caption card-footer text-center">
-                        <ul class="list-inline">
-                            <li><i class="people lighter"></i>&nbsp;Stock: @Html.DisplayFor(modelItem => item.Cantidad)</li>
-                            <li></li>
-                            <li><i class="glyphicon glyphicon-credit-card lighter"></i> @Html.DisplayFor(modelItem => item.Precio)€</li>
-                        </ul>
                     </div>
                 </div>
-            </div>
+            }
         </div>
+    }
+    else
+    {
+        <h2>Categoría vacía</h2>
     }
 </div>

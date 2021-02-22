@@ -5,45 +5,47 @@
     ViewBag.Title = "Details";
 }
 
+<div class="render_body">
+    <div>
+        <br />
+        <h4>Detalles de la factura</h4>
+        <hr />
+        <dl class="dr-horizontal" style="padding: 0vw 3vw 3vw 3vw;">
 
-
-<div>
-    <br />
-    <h4>Detalles de la factura</h4>
-    <hr />
-    <dl class="dr-horizontal" style="padding: 0vw 3vw 3vw 3vw;">
-        
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Cantidad</th>
-                    <th>Producto</th>
-                    <th>Precio unidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (LineaPedido lineaPedido in Model.Pedido.LineaPedido)
-                {
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td style="width: 20em;">@lineaPedido.Cantidad</td>
-                        <td style="width: 20em;">@lineaPedido.Producto.Nombre</td>
-                        <td style="width: 20em;">@lineaPedido.Producto.Precio €</td>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Precio unidad</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (LineaPedido lineaPedido in Model.Pedido.LineaPedido)
+                    {
+                        <tr>
+                            <td style="width: 20em;">@lineaPedido.Cantidad</td>
+                            <td style="width: 20em;">@lineaPedido.Producto.Nombre</td>
+                            <td style="width: 20em;">@lineaPedido.Producto.Precio €</td>
+                        </tr>
 
-                }
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>@Html.DisplayNameFor(model => model.Precio) total del pedido: @Html.DisplayFor(model => model.Precio) €</td>
-                </tr>
-            </tbody>
-        </table>
-        
-    </dl>
-    
-      
-    
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>@Html.DisplayNameFor(model => model.Precio) total del pedido: @Html.DisplayFor(model => model.Precio) €</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </dl>
+
+
+
+    </div>
+    <p>
+        @Html.ActionLink("Volver a tus facturas", "Index")
+    </p>
+
 </div>
-<p>
-    @Html.ActionLink("Volver a tus facturas", "Index")
-</p>
+

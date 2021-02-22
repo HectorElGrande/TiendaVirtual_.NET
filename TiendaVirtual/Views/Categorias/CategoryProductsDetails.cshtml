@@ -4,56 +4,57 @@
 @{
     ViewBag.Title = "CategoryProductsDetails";
 }
-<a href="/Categorias/CategoryProducts/@Html.DisplayFor(model => model.Categoria.Id)">
-    <span class="material-icons" style="font-size: 50px; color: black; margin-top: 50px;">
-        keyboard_arrow_left
-    </span>
-</a>
-<div style="display:flex; flex-direction: column; align-items:center;">
-    <h4 style="font-size: calc(1.405rem + 1.86vw); font-weight:300; margin-bottom: 50px"><b>@Html.DisplayFor(model => model.Nombre)</b></h4>
-    <dl class="dl-horizontal">
-        <div style="display:flex; flex-direction: row; justify-content:center; align-items:center;">
-            @if (Model.Cantidad > 0)
-            {
-                <img src="@Html.DisplayFor(model => model.Imagen)" width="700px" style="margin-right: 5%;" />
-            }
-            else
-            {
-                <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" width="700px" style="margin-right: 5%;"/>
-            }
-            <div style="display:flex; flex-direction:column; justify-content:space-between">
-                <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
-                    <dd style="margin-right: 5px;">
-                        <p style="font-size:large;"><b>Stock disponible</b></p>
+<div class="render_body">
+    <a href="/Categorias/CategoryProducts/@Html.DisplayFor(model => model.Categoria.Id)">
+        <span class="material-icons" style="font-size: 50px; color: black;">
+            keyboard_arrow_left
+        </span>
+    </a>
+    <div style="display:flex; flex-direction: column; align-items:center;">
+        <h4 style="font-size: calc(1.405rem + 1.86vw); font-weight:300; margin-bottom: 50px"><b>@Html.DisplayFor(model => model.Nombre)</b></h4>
+        <dl class="dl-horizontal">
+            <div style="display:flex; flex-direction: row; justify-content:center; align-items:center;">
+                @if (Model.Cantidad > 0)
+                {
+                    <img src="@Html.DisplayFor(model => model.Imagen)" width="700px" style="margin-right: 5%;" />
+                }
+                else
+                {
+                    <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" width="700px" style="margin-right: 5%;" />
+                }
+                <div style="display:flex; flex-direction:column; justify-content:space-between">
+                    <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <dd style="margin-right: 5px;">
+                            <p style="font-size:large;"><b>Stock disponible</b></p>
+                        </dd>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cantidad)
+                        </dd>
+                    </div>
+
+                    <dd style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <p style="font-size: 50px;">@Html.DisplayFor(model => model.Precio)</p>
+                        <p style="font-size: medium;">€</p>
                     </dd>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Cantidad)
-                    </dd>
-                </div>
-
-                <dd style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
-                    <p style="font-size: 50px;">@Html.DisplayFor(model => model.Precio)</p>
-                    <p style="font-size: medium;">€</p>
-                </dd>
-
-                <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
-                    <dd style="margin-right: 5px;">
-                        @if (Model.Cantidad > 0)
-                        {
-                            <input type="number" id="cantidadInput" value="1" min="1" max="@Model.Cantidad" name="cantidad" style="border: none;
+                    <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <dd style="margin-right: 5px;">
+                            @if (Model.Cantidad > 0)
+                            {
+                                <input type="number" id="cantidadInput" value="1" min="1" max="@Model.Cantidad" name="cantidad" style="border: none;
                                                                   background-color: rgba(240, 235, 233, .5); -webkit-background-clip: padding-box;
                                                                   background-clip: padding-box;
                                                                   padding: 8px; border-radius: 10px; max-width: 100px; margin-right: 10px" />
-                        }
+                            }
                         </dd>
 
-                    <dd>
-                        @if (Request.IsAuthenticated && Model.Cantidad > 0)
-                        {
-                            if (!User.Identity.Name.Equals("admin@gmail.com"))
+                        <dd>
+                            @if (Request.IsAuthenticated && Model.Cantidad > 0)
                             {
-                                <button type="button" class="btn btn-success" id="result" onclick="prueba()" style="padding: 1.214rem 2.4rem;
+                                if (!User.Identity.Name.Equals("admin@gmail.com"))
+                                {
+                                    <button type="button" class="btn btn-success" id="result" onclick="prueba()" style="padding: 1.214rem 2.4rem;
                             font-size: 1.143rem;
                             line-height: 1.5;
                             border-radius: 2.14286rem;
@@ -61,43 +62,44 @@
                             background-color: #e74739;
                             border-color: #e74739;
                             box-shadow: inset 0 1px 0 hsla(0,0%,100%,.15),0 1px 1px rgba(0,0,0,.075);">
-                                    <div style="display:flex; flex-direction:row; align-items: center; justify-content:space-around;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                                        </svg>
-                                        <p style="margin:0;"><b>Añadir al carrito</b></p>
-                                    </div>
-                                </button>
+                                        <div style="display:flex; flex-direction:row; align-items: center; justify-content:space-around;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                                            </svg>
+                                            <p style="margin:0;"><b>Añadir al carrito</b></p>
+                                        </div>
+                                    </button>
+                                }
                             }
-                        }
-                    </dd>
+                        </dd>
+                    </div>
                 </div>
             </div>
-        </div>
-    </dl>
-</div>
+        </dl>
+    </div>
 
 
 
 
-<!-- Trigger the modal with a button -->
-<button id="modal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="visibility: hidden">Open Modal</button>
+    <!-- Trigger the modal with a button -->
+    <button id="modal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="visibility: hidden">Open Modal</button>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">No hay suficiente stock disponible en estos momentos.</h4>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">No hay suficiente stock disponible en estos momentos.</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Ha de seleccionar una cantidad dentro del stock disponible.</p>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>Ha de seleccionar una cantidad dentro del stock disponible.</p>
-            </div>
-        </div>
 
+        </div>
     </div>
 </div>
 
