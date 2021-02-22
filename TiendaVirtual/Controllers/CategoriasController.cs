@@ -174,7 +174,22 @@ namespace TiendaVirtual.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Categoria categoria = db.Categorias.Find(id);
+            var productos = categoria.Producto;
+            List<int> ids = new List<int> { };
+            foreach(Producto producto in productos)
+            {
+                Producto prod = db.Productos.FirstOrDefault(p => p.Nombre == producto.Nombre);
+                prod.Categoria = null;
+                ids.Add(prod.Id);
+            }
             db.Categorias.Remove(categoria);
+
+            foreach (int i in ids)
+            {
+                Producto producto2 = db.Productos.Find(i);
+                db.Productos.Remove(producto2);
+            }
+     
             db.SaveChanges();
             return RedirectToAction("Index");
         }
