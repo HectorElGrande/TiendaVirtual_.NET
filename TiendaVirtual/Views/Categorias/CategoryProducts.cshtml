@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "CategoryProducts";
 }
-
-<h2>CategoryProducts</h2>
+<br />
+<h2>@Model.First().Categoria.Nombre</h2>
 
 <div id="html-item-pagination" style="height: 700px;">
     @foreach (var item in Model)

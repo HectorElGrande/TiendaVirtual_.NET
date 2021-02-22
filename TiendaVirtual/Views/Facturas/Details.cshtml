@@ -1,34 +1,49 @@
 ﻿@model TiendaVirtual.Models.Factura
+@using TiendaVirtual.Models
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>Factura</h4>
+    <br />
+    <h4>Detalles de la factura</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Usuario
-        </dt>
+    <dl class="dr-horizontal" style="padding: 0vw 3vw 3vw 3vw;">
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Precio unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (LineaPedido lineaPedido in Model.Pedido.LineaPedido)
+                {
+                    <tr>
+                        <td style="width: 20em;">@lineaPedido.Cantidad</td>
+                        <td style="width: 20em;">@lineaPedido.Producto.Nombre</td>
+                        <td style="width: 20em;">@lineaPedido.Producto.Precio €</td>
+                    </tr>
 
-        <dd>
-            @User.Identity.Name
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Precio) del pedido
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Precio) €
-        </dd>
-
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>@Html.DisplayNameFor(model => model.Precio) total del pedido: @Html.DisplayFor(model => model.Precio) €</td>
+                </tr>
+            </tbody>
+        </table>
+        
     </dl>
+    
+      
+    
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a tus facturas", "Index")
 </p>

@@ -66,25 +66,11 @@ namespace TiendaVirtual.Controllers
         }
 
         // GET: CarritoCompra/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, CarritoCompra carrito)
         {
-            return View();
-        }
-
-        // POST: CarritoCompra/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            LineaPedido l = carrito.FirstOrDefault(p => p.Id == id);
+            carrito.Remove(l);
+            return RedirectToAction("Index");
         }
     }
 }
