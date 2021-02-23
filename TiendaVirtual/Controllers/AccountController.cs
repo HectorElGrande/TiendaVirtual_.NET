@@ -17,6 +17,7 @@ namespace TiendaVirtual.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private VirtualShopModelContainer db = new VirtualShopModelContainer();
 
         public AccountController()
         {
@@ -57,6 +58,11 @@ namespace TiendaVirtual.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (db.Stocks.Count() == 0)
+            {
+                db.Stocks.Add(new Stock());
+            }
+            db.SaveChanges();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
