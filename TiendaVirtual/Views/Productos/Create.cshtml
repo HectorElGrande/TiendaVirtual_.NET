@@ -46,15 +46,13 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 15vw;">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 5vw;">
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.Categoria.Nombre, categorias, null, null)
                     </div>
                     <div class="col-md-10">
-                        <a class="a-btn" href="/Categorias/Create" style="text-decoration:none; border-radius: 500px; display:flex; justify-content:center; align-items:center; width: 50px;">
-                            <span class="material-icons">
-                                add_circle_outline
-                            </span>
+                        <a  href="/Categorias/Create" style="text-decoration:none; border-radius: 500px; display:flex; justify-content:center; align-items:center; width: 50px;">
+                            <button type="button" class="btn btn-default" style="border-radius: inherit; display: flex; justify-content: center; align-items: center;"><p style="margin: 0 0 1px;">+</p></button>
                         </a>
                     </div>
                 </div>

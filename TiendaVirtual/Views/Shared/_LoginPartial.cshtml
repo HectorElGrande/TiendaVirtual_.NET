@@ -30,11 +30,24 @@
             </a>
         </li>
     }
-        <li>
-            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
-    </ul>
+    
+        
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            @User.Identity.GetUserName()
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            @if (!User.Identity.Name.Equals("admin@gmail.com"))
+            {
+                <li><a href="/Facturas">Ver facturas</a></li>
+            }
+                <li><a href="/Manage/ChangePassword">Cambiar contraseña</a></li>
+            </ul>
+    </li>
+    
+    <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+</ul>
     }
 }
 else

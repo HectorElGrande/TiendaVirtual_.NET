@@ -102,6 +102,11 @@ namespace TiendaVirtual.Controllers
                     {
                         db.Stocks.First().Producto.Remove(productoStock);
                     }
+                    if (prod.Cantidad < 2 && db.Stocks.First().Producto.FirstOrDefault(p => p.Nombre == prod.Nombre) == null)
+                    {
+                        Stock stock = db.Stocks.First();
+                        stock.Producto.Add(prod);
+                    }
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

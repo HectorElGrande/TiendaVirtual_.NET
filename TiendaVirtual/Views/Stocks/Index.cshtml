@@ -39,10 +39,31 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Precio)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Productos", new { id = item.Id }, null) |
-                    @Html.ActionLink("Details", "Details", "Productos", new { id = item.Id }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Productos", new { id = item.Id }, null)
+                <td style="display:flex; flex-direction:row;">
+                    <button type="button" class="btn btn-info" style="display:flex; justify-content:center; align-items:center; padding:5px; margin-right:10px;">
+                        <a href="/Productos/Edit/@item.Id" style="text-decoration:none; border: none; display:flex; justify-content:center; align-items:center; color: white;">
+                            <span class="material-icons" style="color: white;">
+                                create
+                            </span>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-warning" style="display:flex; justify-content:center; align-items:center; padding:5px; margin-right:10px;">
+                        <a href="/Productos/Details/@item.Id" style="text-decoration:none; border: none; display:flex; justify-content:center; align-items:center; color: white;">
+                            <span class="material-icons">
+                                visibility
+                            </span>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-danger" style="display:flex; justify-content:center; align-items:center; padding:5px;">
+                        <a href="/Productos/Delete/@item.Id" style="text-decoration:none; border: none; display:flex; justify-content:center; align-items:center; color: white;">
+                            <span class='material-icons'>
+                                delete_forever
+                            </span>
+                        </a>
+                    </button>
+
+
+
                 </td>
             </tr>
         }
