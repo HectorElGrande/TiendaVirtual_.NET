@@ -14,46 +14,39 @@
         <h4 style="font-size: calc(1.405rem + 1.86vw); font-weight:300; margin-bottom: 50px"><b>@Html.DisplayFor(model => model.Nombre)</b></h4>
         <dl class="dl-horizontal">
             <div style="display:flex; flex-direction: row; justify-content:center; align-items:center;">
-                @if (Model.Cantidad > 0)
-                {
-                    <img src="@Html.DisplayFor(model => model.Imagen)" width="700px" style="margin-right: 5%;" />
-                }
-                else
-                {
-                    <img src="https://www.doralopez.net/uploads/8/3/0/5/8305084/agotado_orig.png" width="700px" style="margin-right: 5%;" />
-                }
-            <div style="display:flex; flex-direction:column; justify-content:space-between">
-                <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
-                    <dd style="margin-right: 5px;">
-                        <p style="font-size:large;"><b>Categoría</b></p>
+                <img src="@Html.DisplayFor(model => model.Imagen)" width="700px" style="margin-right: 5%;" />
+                <div style="display:flex; flex-direction:column; justify-content:space-between">
+                    <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <dd style="margin-right: 5px;">
+                            <p style="font-size:large;"><b>Categoría</b></p>
+                        </dd>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Categoria.Nombre)
+                        </dd>
+                    </div>
+                    <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <dd style="margin-right: 5px;">
+                            <p style="font-size:large;"><b>Stock disponible</b></p>
+                        </dd>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cantidad)
+                        </dd>
+                    </div>
+
+                    <dd style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <p style="font-size: 50px;">@Html.DisplayFor(model => model.Precio)</p>
+                        <p style="font-size: medium;">€</p>
                     </dd>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Categoria.Nombre)
-                    </dd>
+
+
+
+
                 </div>
-                <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
-                    <dd style="margin-right: 5px;">
-                        <p style="font-size:large;"><b>Stock disponible</b></p>
-                    </dd>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Cantidad)
-                    </dd>
-                </div>
-
-                <dd style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
-                    <p style="font-size: 50px;">@Html.DisplayFor(model => model.Precio)</p>
-                    <p style="font-size: medium;">€</p>
-                </dd>
-
-
-
-
-
-            </div>
             </div>
         </dl>
     </div>
-    </div>
+</div>
 

@@ -5,65 +5,57 @@
 }
 
 <div class="render_body">
-    <h2>Delete</h2>
+    <h2>Borrar producto</h2>
 
-    <h3>Are you sure you want to delete this?</h3>
-    <div>
-        <h4>Producto</h4>
-        <hr />
+    <a href="/Productos">
+        <span class="material-icons" style="font-size: 50px; color: black;">
+            keyboard_arrow_left
+        </span>
+    </a>
+    <div style="display:flex; flex-direction: column; align-items:center;">
+        <h4 style="font-size: calc(1.405rem + 1.86vw); font-weight:300; margin-bottom: 50px"><b>@Html.DisplayFor(model => model.Nombre)</b></h4>
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </dt>
+            <div style="display:flex; flex-direction: row; justify-content:center; align-items:center;">
+                <img src="@Html.DisplayFor(model => model.Imagen)" width="700px" style="margin-right: 5%;" />
+                <div style="display:flex; flex-direction:column; justify-content:space-between">
+                    <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <dd style="margin-right: 5px;">
+                            <p style="font-size:large;"><b>Categoría</b></p>
+                        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Nombre)
-            </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Categoria.Nombre)
+                        </dd>
+                    </div>
+                    <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <dd style="margin-right: 5px;">
+                            <p style="font-size:large;"><b>Stock disponible</b></p>
+                        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Cantidad)
+                        </dd>
+                    </div>
 
-            <dd>
-                <img src="@Html.DisplayFor(model => model.Imagen)" width="300px" />
-            </dd>
+                    <dd style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
+                        <p style="font-size: 50px;">@Html.DisplayFor(model => model.Precio)</p>
+                        <p style="font-size: medium;">€</p>
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </dt>
+                    <h3>¿Quieres eliminar este producto?</h3>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-            <dd>
-                @Html.DisplayFor(model => model.Categoria.Nombre)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Cantidad)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Cantidad)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Precio)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Precio)
-            </dd>
-
-        </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                <a class="a-btn" href="/Productos" style="text-decoration:none;">Volver</a>
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Eliminar" class="btn btn-default" />
+                        </div>
+                    }
+                </div>
             </div>
-        }
+        </dl>
     </div>
-
 </div>
+
+
 

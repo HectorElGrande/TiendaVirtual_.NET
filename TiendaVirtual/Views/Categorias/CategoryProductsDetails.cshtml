@@ -40,7 +40,7 @@
 
                     <div style="display:flex; flex-direction:row; align-items:center; margin-bottom: 20px;">
                         <dd style="margin-right: 5px;">
-                            @if (Model.Cantidad > 0)
+                            @if (Request.IsAuthenticated && Model.Cantidad > 0 && !User.Identity.Name.Equals("admin@gmail.com"))
                             {
                                 <input type="number" id="cantidadInput" value="1" min="1" max="@Model.Cantidad" name="cantidad" style="border: none;
                                                                   background-color: rgba(240, 235, 233, .5); -webkit-background-clip: padding-box;
